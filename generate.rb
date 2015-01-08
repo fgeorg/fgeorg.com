@@ -80,7 +80,8 @@ pages.each do |key, val|
   i = 0
   pages.each do |key2, val2|
     fname2 = "#{key2 == index ? 'index' : key2}.html"
-    links += "          <li#{' class="active"' if key == key2}><a href=\"#{fname2}\">#{key2.capitalize}</a></li>#{"\n" if i < pages.count - 1}"
+    url_path = key2 == index ? '' : key2
+    links += "          <li#{' class="active"' if key == key2}><a href=\"#{url_path}\">#{key2.capitalize}</a></li>#{"\n" if i < pages.count - 1}"
     i += 1
   end
   content = 
