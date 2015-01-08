@@ -3,7 +3,7 @@
 # content
 
 #theme = "bootstrap"
-index = "about"
+#index = "about"
 # todo add page order
 pages = {}
 pages["about"] =
@@ -74,12 +74,11 @@ PAGE_LINKS_GO_HERE
 # generate html and save
 
 pages.each do |key, val|
-  fname = "#{key == index ? 'index' : key}.html"
+  fname = "#{key}.html"
   puts "building #{fname}..."
   links = "";
   i = 0
   pages.each do |key2, val2|
-    fname2 = "#{key2 == index ? 'index' : key2}.html"
     links += "          <li#{' class="active"' if key == key2}><a href=\"#{key2}\">#{key2.capitalize}</a></li>#{"\n" if i < pages.count - 1}"
     i += 1
   end
