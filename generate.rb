@@ -59,7 +59,7 @@ navbar_template =
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">Francesco Georg</a>
+        <a class="navbar-brand" href="./">Francesco Georg</a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -80,8 +80,7 @@ pages.each do |key, val|
   i = 0
   pages.each do |key2, val2|
     fname2 = "#{key2 == index ? 'index' : key2}.html"
-    url_path = key2 == index ? '' : key2
-    links += "          <li#{' class="active"' if key == key2}><a href=\"#{url_path}\">#{key2.capitalize}</a></li>#{"\n" if i < pages.count - 1}"
+    links += "          <li#{' class="active"' if key == key2}><a href=\"#{key2}\">#{key2.capitalize}</a></li>#{"\n" if i < pages.count - 1}"
     i += 1
   end
   content = 
