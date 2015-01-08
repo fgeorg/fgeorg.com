@@ -6,33 +6,11 @@
 #index = "about"
 # todo add page order
 pages = {}
-pages["about"] =
-'
-# About
-
-## h2 one
-
-here\'s markdown for my about page
-
-## h2 two
-
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
-'
-
-pages["portfolio"] =
-'
-# Portfolio
-
-## h2
-
-here\'s markdown for my portfolio page
-'
-
-
-
+Dir["content/*.markdown"].each do |markdown_file|
+  puts "found " + markdown_file
+  name = markdown_file.split('/')[-1].split('.')[0]
+  pages[name] = File.read(markdown_file)
+end
 
 
 # template
