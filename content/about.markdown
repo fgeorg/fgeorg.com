@@ -1,5 +1,5 @@
-# About Francesco Georg
+# Francesco Georg
 
 <img src="./assets/headshot.jpg" style="width: 200px;"/>
 
-Francesco Georg is a Software Engineer working in games in Berlin Germany.
+I am a Software Engineer working at [Wooga](http://www.wooga.com) in Berlin. I love making games and other smooth user experiences. I started programming at age 10 after my brother showed me how to make simple TrueBasic programs on an antiquated (even for the time) Mac. I spent hours making drawing programs, rpgs, and my personal favorite: a game where you have to reach the bathroom before you "run out of time." Throughout school I was very interested in math and music and was quite serious about becoming a professional violinist. I rediscovered my passion for computer science at Stanford University and entered the games industry directly after graduating. My other pasttimes include playing violin, social dancing, and learning German.
