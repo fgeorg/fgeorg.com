@@ -41,7 +41,7 @@ _______
 
 A simple 3D rigid body physics library I wrote as my final project for cs448x.
 
-Technical Details: https://fgeorg.com/psim_details.html
+Technical Details: http://fgeorg.com/psim_details.html
 
 Demo Video: https://www.youtube.com/watch?v=13dJZ9FeKJM
 
