@@ -1,0 +1,109 @@
+<html>
+
+<body style="width: 800px; font-size:1.2em">
+
+<h1>Realtime Rigid Body Simulation</h1>
+
+<h3>Francesco Georg</h3>
+
+<p>
+My goal is to create a simple rigid body physics engine that is packaged up and ready to use in a game.
+</p>
+<h2>Background</h2>
+
+While real-time rigid body physics engines tend to be less accurate they have the benefit that you can interact with them, making them ideal for video games.
+
+<h2>Project Outline</h2>
+<p>
+The main challanges and components of the simulation are the following:
+</p>
+<pre>
+- ODE solver
+   - Given velocity and acceleration, what is the position?
+- Collision and detection
+   - Are the meshes intersecting? What is the normal of collision? Are the bodies moving toward or away from each other?
+- Equations of Dynamics
+   - Everything comes back to F=ma
+   - Calculate impulses based on how the objects collide and their material properties
+- Rendering
+   - We want something real-time that clearly shows us what's going on
+</pre>
+<h2>ODE solver</h2>
+<p>
+I implemented a stupidly simple solver using euler's method. At each time step, I basically do the following:
+</p>
+<pre>
+for each body b
+  accel = (forces acting on b) / (mass of b)
+
+  b.vel += accel * dt
+  b.vel += (impulses acting on b) / (mass of b)
+
+  b.pos += b.vel * dt
+</pre>
+<p>
+I do something similar for rotational acceleration and velocity. I did some tests using smaller time step divisions to find that the quality of the simulation wasn't really affected by the ODE solver, so I didn't bother making it more complicated.
+</p>
+
+<h2>Collision Detection</h2>
+<p>
+Each body has a triangle mesh describing it's surface. To detect collisions between bodies b1 and b2, I check each edge in b1's mesh agaist each triangle in b2's mesh and vise versa. This gets very slow without any kind of acceleration structure, so I do some simple bounding box checking to avoid having to check every mesh against every other mesh.
+</p>
+<p>
+For two intersecting bodies, I find every point of edge-triangle intersection. To find the normal for that collision, I take the least squares approximation for the closest plane to all points. The normal to that plane tends to be a pretty good normal for the collision.
+</p>
+
+<h2>Dynamics Equations</h2>
+<p>
+Now we have information telling us the point and normals of collision. To Find the impulses, I use an equation I found on a game developer's forum <a href="http://www.physicsforums.com/showthread.php?t=186335">Calculating impulse due to rigid body collision with friction.</a>
+</p>
+
+<p>
+This is the equation:
+</p>
+<pre>
+jn = vn*(-(1 + e))
+jn /= 1/m1 + 1/m2 + ( (I1_inv dot (R1 cross N)) cross R1) dot N + ( (I2_inv dot (R2 cross N)) cross R2) dot N
+
+jn:                 the scalar impulse along the normal
+vn:                 closing velocity of the bodies at the point of collision
+e:                  the coefficient of restitution decribing how elastic the collision is
+m1 and m2:          the mass of b1 and b2
+I1_inv and I2_inv:  inverse of the inertia tensor for b1 and b2
+R1 and R2:          the position vector from b's center of mass to the point of collision
+N:                  The normal of the collision
+</pre>
+<p>
+and similarly
+</p>
+<pre>
+jt = vt
+jt /= 1/m1 + 1/m2 + ( (I1_inv dot (R1 cross T)) cross R1) dot T + ( (I2_inv dot (R2 cross T)) cross R2) dot T
+if (jt > jn*friction) then jt = jn*friction
+
+jt:                 the scalar impulse along the tangent due to friction
+vt:                 the speed along the tangent of the collision
+T:                  the vector tangent of the collision
+</pre>
+
+<h2>Rendering</h2>
+<p>
+I keep the renderer separate from the physics library, but I wrote a simple OpenGL program that showcases the physics engine, with an option to show you collisions and bounding boxes.
+</p>
+
+<h2>Results</h2>
+
+<p>
+Here's video capture of a test using the psim library: <br/>
+<a href="psim_video.mpeg">psim_video.mpeg</a> (best quality) <br/>
+<a href="psim_video.avi">psim_video.avi</a> <br/>
+<a href="psim_video.mov">psim_video.mov</a> <br/>
+</p>
+
+<p>
+<a href="psim.zip">Here's the source code.</a> It works on Linux or OSX using make
+</p>
+
+</body>
+
+</html>
