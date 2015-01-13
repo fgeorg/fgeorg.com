@@ -9,7 +9,7 @@ Google Play: https://play.google.com/store/apps/details?id=com.wooga.jelly_splas
 _______
 ## <img src="./assets/mg.png" style="width: 100px;"/> Magic Gems
 
-I was Lead Developer on Magic Gems during its entire production and launch over 9 months. The project went well from the technical side, but was not a success financially.
+I was the Lead Developer on Magic Gems during its entire production and launch over 9 months.
 
 iTunes: https://itunes.apple.com/ca/app/magic-gems/id895425586?mt=8
 
